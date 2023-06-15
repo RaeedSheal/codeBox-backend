@@ -1,0 +1,14 @@
+{
+  "name": "codebox-backend",
+  "version": "1.0.0",
+  "description": "Final Project at Tuwaiq Academy - codeBox -Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
