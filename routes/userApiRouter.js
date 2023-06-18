@@ -6,7 +6,7 @@ const userController = require("../controllers/userController");
 // SignUp
 router.post("/createuser", userController.Signup);
 
-// SignUp
+// Login
 router.post("/loginuser", userController.Login);
 
 // Export

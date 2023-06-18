@@ -12,6 +12,8 @@ app.use(express.json());
 // Get Routes
 
 const userApiRouter = require("./routes/userApiRouter");
+const adminApiRouter = require("./routes/adminApiRouter");
+const ideaApiRouter = require("./routes/ideaApiRouter");
 
 // mongoose
 mongoose
@@ -26,6 +28,8 @@ mongoose
 // Use Routes
 
 app.use("/api", userApiRouter);
+app.use("/api", adminApiRouter);
+app.use("/api", ideaApiRouter);
 
 //
 
