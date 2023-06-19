@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema as _Schema, model } from "mongoose";
 
-const Schema = mongoose.Schema;
+const Schema = _Schema;
 
 const ideaSchema = new Schema(
     {
@@ -14,6 +14,6 @@ const ideaSchema = new Schema(
     { timestamps: true }
 );
 
-const Idea = mongoose.model("idea", ideaSchema);
+const Idea = model("idea", ideaSchema);
 
-module.exports = Idea;
+export default Idea;
