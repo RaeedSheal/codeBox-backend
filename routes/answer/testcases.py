@@ -1,0 +1,17 @@
+
+def get_test_cases():
+    return {
+
+        # get input
+        "SMALL_INPUT": 1,
+        "LARGE_INPUT": 5,
+    }
+
+
+def get_expected_outputs():
+    return {
+        # get output
+        "SMALL_INPUT": 3,
+        "LARGE_INPUT": 15,
+    }
+    

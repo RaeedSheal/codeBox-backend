@@ -1,21 +1,25 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-require("dotenv").config();
+import express, { json } from "express";
+import { connect } from "mongoose";
+import bodyParser from "body-parser";
+import {} from "dotenv/config";
 const app = express();
+import cors from "cors";
 
 // Use
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(cors());
 
 // Get Routes
 
-const userApiRouter = require("./routes/userApiRouter");
+import userApiRouter from "./routes/userApiRouter.js";
+import adminApiRouter from "./routes/adminApiRouter.js";
+import ideaApiRouter from "./routes/ideaApiRouter.js";
+import submitionApiRouter from "./routes/submitionApiRouter.js";
 
 // mongoose
-mongoose
-    .connect(process.env.DB_URL)
+connect(process.env.DB_URL)
     .then(() => console.log("--DB Connected--"))
     .catch((e) => {
         console.log("--DB Error Connection--");
@@ -26,6 +30,9 @@ mongoose
 // Use Routes
 
 app.use("/api", userApiRouter);
+app.use("/api", adminApiRouter);
+app.use("/api", ideaApiRouter);
+app.use("/api", submitionApiRouter);
 
 //
 
