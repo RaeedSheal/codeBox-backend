@@ -57,7 +57,9 @@ module.exports = {
                     JWT_PRIVATE,
                     { expiresIn: "1h" }
                 );
-                res.json({ id: user._id, username: user.username, token });
+                res.cookie("access_token", token, {
+                    httpOnly: true,
+                }).json({ id: user._id, username: user.username, token });
             } else {
                 res.status(401).json({ errMsg: "Incorrect Information" });
             }

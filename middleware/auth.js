@@ -22,4 +22,20 @@ module.exports = {
             res.json({ error: "Not Authenticated" });
         }
     },
+    Authorize: async (req, res, next) => {
+        try {
+            res.locals.admin = await Admin.findById(
+                res.locals.verifiedToken.id
+            );
+            // Only admin can do this
+            if (res.locals.admin) {
+                next();
+            } else {
+                res.json({ err: "Only admin can access this" });
+            }
+        } catch (err) {
+            console.log("error authorizing: " + err);
+            res.json({ err: "Only admin can access this" });
+        }
+    },
 };
