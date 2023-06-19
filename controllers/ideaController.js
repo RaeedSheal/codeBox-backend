@@ -13,7 +13,7 @@ export async function CreateIdea(req, res) {
         res.json(idea);
     } catch (err) {
         console.log("Error In Create Idea: " + err);
-        res.json({ errMsg: "Error in Creating Idea" });
+        res.status(500).json({ errMsg: "Error in Creating Idea" });
     }
 }
 export async function getIdea(req, res) {
@@ -23,7 +23,7 @@ export async function getIdea(req, res) {
         res.json({ idea: randomIdea });
     } catch (err) {
         console.log("Error In Finding Random Idea: " + err);
-        res.json({ errMsg: "Idea Not found" });
+        res.status(404).json({ errMsg: "Idea Not found" });
     }
 }
 export async function getIdeas(req, res) {
@@ -32,7 +32,7 @@ export async function getIdeas(req, res) {
         res.json({ ideas });
     } catch (err) {
         console.log("Error In Finding Random Idea: " + err);
-        res.json({ errMsg: "Ideas Not found" });
+        res.status(404).json({ errMsg: "Ideas Not found" });
     }
 }
 export async function deleteIdea(req, res) {
@@ -42,7 +42,7 @@ export async function deleteIdea(req, res) {
         res.json(idea);
     } catch (err) {
         console.log("Error In Deleting Idea: " + err);
-        res.json({ errMsg: "Idea Not found" });
+        res.status(404).json({ errMsg: "Idea Not found" });
     }
 }
 export async function editIdea(req, res) {
@@ -68,6 +68,6 @@ export async function editIdea(req, res) {
         res.json(editedIdea);
     } catch (err) {
         console.log("Error In Editing Idea: " + err);
-        res.json({ errMsg: "Idea Not found" });
+        res.status(404).json({ errMsg: "Idea Not found" });
     }
 }

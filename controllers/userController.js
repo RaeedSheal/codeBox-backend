@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-
 import { hash, compare } from "bcrypt";
 const saltRounds = parseInt(process.env.SALT);
 import jsonwebtoken from "jsonwebtoken";
@@ -15,7 +14,7 @@ export async function Signup(req, res) {
         console.log("-- Error In Hashing --");
         console.log(err);
         console.log("-- Error In Hashing --");
-        res.json({ errMsg: "Error In Creating User" });
+        res.status(500).json({ errMsg: "Error In Creating User" });
     }
     // Creating User
     try {
@@ -36,7 +35,7 @@ export async function Signup(req, res) {
         console.log("-- Error In Creating User --");
         console.log(err);
         console.log("-- Error In Creating User --");
-        res.json({ errMsg: "Error In Creating User" });
+        res.status(500).json({ errMsg: "Error In Creating User" });
     }
 }
 export async function Login(req, res) {
@@ -64,5 +63,25 @@ export async function Login(req, res) {
     } catch (err) {
         console.log(err);
         res.status(401).json({ errMsg: "Incorrect Information" });
+    }
+}
+export async function EditUser(req, res) {
+    try {
+        let name = req.body.name;
+        let email = req.body.email;
+        let date = req.body.date;
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                name,
+                email,
+                date,
+            },
+            { new: true }
+        );
+        res.json(user);
+    } catch (err) {
+        console.log("Error in Editing User" + err);
+        res.json({ errMsg: "Error in Editing" });
     }
 }

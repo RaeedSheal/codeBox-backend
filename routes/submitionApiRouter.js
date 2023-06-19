@@ -9,7 +9,7 @@ const ___filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(___filename);
 const CODE_FOLDER = "answer";
 // test
-router.get("/submitcode/:id", (req, res) => {
+router.post("/submitcode/:id", (req, res) => {
     testCode(req, res);
 });
 

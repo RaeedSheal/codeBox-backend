@@ -15,7 +15,7 @@ export async function Create(req, res) {
         console.log("-- Error In Hashing --");
         console.log(err);
         console.log("-- Error In Hashing --");
-        res.json({ errMsg: "Error In Creating admin" });
+        res.status(500).json({ errMsg: "Error In Creating admin" });
     }
     // Creating User
     try {
@@ -33,7 +33,7 @@ export async function Create(req, res) {
         console.log("-- Error In Creating admin --");
         console.log(err);
         console.log("-- Error In Creating admin --");
-        res.json({ errMsg: "Error In Creating admin" });
+        res.status(500).json({ errMsg: "Error In Creating admin" });
     }
 }
 export async function Login(req, res) {
