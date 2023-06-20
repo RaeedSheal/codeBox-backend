@@ -8,13 +8,17 @@ import {
     deleteIdea,
     editIdea,
 } from "../controllers/ideaController.js";
-import { Authenticate, Authorize } from "../middleware/auth.js";
+import {
+    Authenticate,
+    Authorize,
+    AuthenticateCookie,
+} from "../middleware/auth.js";
 
 // Create Idea
 router.post("/createidea", Authenticate, Authorize, CreateIdea);
 
 // Get Random Idea
-router.get("/randomIdea", Authenticate, getIdea);
+router.get("/randomIdea", AuthenticateCookie, getIdea);
 
 // Delete Idea
 router.get("/ideas", Authenticate, Authorize, getIdeas);
