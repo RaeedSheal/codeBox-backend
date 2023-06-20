@@ -3,6 +3,7 @@ import Admin from "../models/Admin.js";
 import { hash, compare } from "bcrypt";
 const saltRounds = parseInt(process.env.SALT);
 import jsonwebtoken from "jsonwebtoken";
+import User from "../models/User.js";
 const { sign } = jsonwebtoken;
 const JWT_PRIVATE = process.env.JWT_PRIVATE;
 
@@ -60,5 +61,36 @@ export async function Login(req, res) {
     } catch (err) {
         console.log(err);
         res.status(401).json({ errMsg: "Incorrect Information" });
+    }
+}
+export async function GetUsers(req, res) {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ errMsg: "Error" });
+    }
+}
+
+export async function GetUser(req, res) {
+    try {
+        const id = req.params.id;
+        const user = await User.findById(id);
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ errMsg: "Error" });
+    }
+}
+
+export async function DeleteUser(req, res) {
+    try {
+        const id = req.params.id;
+        const user = await User.findByIdAndDelete(id);
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ errMsg: "Error" });
     }
 }

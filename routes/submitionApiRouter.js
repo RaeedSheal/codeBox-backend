@@ -27,9 +27,10 @@ async function testCode(req, res) {
         const proc = execSync(
             "python3 " + join(__dirname, CODE_FOLDER, "test.py")
         );
-        const results = proc.toString();
+        let results = proc.toString();
+        results = results.substring(0, results.length - 1);
 
-        return res.json(results);
+        return res.json({ results });
     } catch (error) {
         console.log("An error occurred");
         console.log(error);
