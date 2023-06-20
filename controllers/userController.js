@@ -55,7 +55,7 @@ export async function Login(req, res) {
                 { expiresIn: "1h" }
             );
             res.cookie("access_token", token, {
-                httpOnly: true,
+                httpOnly: false,
             }).json({ id: user._id, username: user.username, token });
         } else {
             res.status(401).json({ errMsg: "Incorrect Information" });
