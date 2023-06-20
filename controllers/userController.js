@@ -41,7 +41,7 @@ export async function Signup(req, res) {
 export async function Login(req, res) {
     try {
         const user = await User.findOne({
-            username: req.body.username,
+            email: req.body.email,
         }).select("+password");
 
         if (await compare(req.body.password, user.password)) {
