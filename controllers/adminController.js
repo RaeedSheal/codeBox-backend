@@ -53,7 +53,7 @@ export async function Login(req, res) {
                 { expiresIn: "1h" }
             );
             res.cookie("access_token", token, {
-                httpOnly: true,
+                httpOnly: false,
             }).json({ id: admin._id, username: admin.username, token });
         } else {
             res.status(401).json({ errMsg: "Incorrect Information" });
@@ -88,6 +88,21 @@ export async function DeleteUser(req, res) {
     try {
         const id = req.params.id;
         const user = await User.findByIdAndDelete(id);
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ errMsg: "Error" });
+    }
+}
+
+export async function EditUser(req, res) {
+    try {
+        const id = req.params.id;
+        let name = req.body.name;
+        const user = await User.findByIdAndUpdate(id, {
+            name,
+            email,
+        });
         res.json(user);
     } catch (err) {
         console.log(err);
