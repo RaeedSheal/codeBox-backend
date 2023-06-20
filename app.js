@@ -7,10 +7,14 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 // Use
+const corsOptions = {
+    origin: true, //included origin as true
+    credentials: true, //included credentials as true
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 // Get Routes

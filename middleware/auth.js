@@ -35,3 +35,18 @@ export async function Authorize(req, res, next) {
         res.json({ err: "Only admin can access this" });
     }
 }
+export async function AuthenticateCookie(req, res, next) {
+    const tokenCookie = req.cookies.access_token;
+    // No Token
+    if (!tokenCookie) {
+        res.json({ error: "No Token" });
+        return;
+    }
+    try {
+        res.locals.verifiedToken = verify(tokenCookie, JWT_PRIVATE);
+        next();
+    } catch (err) {
+        console.log("Authenticate: " + err);
+        res.json({ error: "Not Authenticated" });
+    }
+}
