@@ -8,7 +8,7 @@ import {
     GetUser,
     DeleteUser,
 } from "../controllers/adminController.js";
-import { Authenticate, Authorize } from "../middleware/auth.js";
+import { AuthenticateCookie, Authorize } from "../middleware/auth.js";
 
 // SignUp - once
 router.post("/createadmin", Create);
@@ -18,15 +18,15 @@ router.post("/loginadmin", Login);
 
 // Get all Users
 
-router.get("/getusers", Authenticate, Authorize, GetUsers);
+router.get("/getusers", AuthenticateCookie, Authorize, GetUsers);
 
 // Get a specifc user
 
-router.get("/getuser/:id", Authenticate, Authorize, GetUser);
+router.get("/getuser/:id", AuthenticateCookie, Authorize, GetUser);
 
 // Delete a user
 
-router.delete("/eleteuser/:id", Authenticate, Authorize, DeleteUser);
+router.delete("/eleteuser/:id", AuthenticateCookie, Authorize, DeleteUser);
 
 // Export
 export default router;

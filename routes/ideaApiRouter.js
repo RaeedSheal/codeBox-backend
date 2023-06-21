@@ -7,6 +7,7 @@ import {
     getIdeas,
     deleteIdea,
     editIdea,
+    getIdeaById,
 } from "../controllers/ideaController.js";
 import {
     Authenticate,
@@ -15,19 +16,21 @@ import {
 } from "../middleware/auth.js";
 
 // Create Idea
-router.post("/createidea", Authenticate, Authorize, CreateIdea);
+router.post("/createidea", AuthenticateCookie, Authorize, CreateIdea);
 
 // Get Random Idea
 router.get("/randomIdea", AuthenticateCookie, getIdea);
 
-// Delete Idea
-router.get("/ideas", Authenticate, Authorize, getIdeas);
+// get all Idea
+router.get("/ideas", AuthenticateCookie, Authorize, getIdeas);
+// get specifc Idea
+router.get("/getideabyid/:id", AuthenticateCookie, Authorize, getIdeaById);
 
 // Deleta an Idea
-router.delete("/deleleidea/:id", Authenticate, Authorize, deleteIdea);
+router.delete("/deleleidea/:id", AuthenticateCookie, Authorize, deleteIdea);
 
 // Edit Idea
-router.patch("/editidea/:id", Authenticate, Authorize, editIdea);
+router.put("/editidea/:id", AuthenticateCookie, Authorize, editIdea);
 
 // Export
 export default router;

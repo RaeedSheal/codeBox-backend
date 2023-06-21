@@ -31,7 +31,16 @@ export async function getIdeas(req, res) {
         const ideas = await Idea.find();
         res.json({ ideas });
     } catch (err) {
-        console.log("Error In Finding Random Idea: " + err);
+        console.log("Error In Finding Ideas: " + err);
+        res.status(404).json({ errMsg: "Ideas Not found" });
+    }
+}
+export async function getIdeaById(req, res) {
+    try {
+        const idea = await Idea.findById(req.params.id);
+        res.json({ idea });
+    } catch (err) {
+        console.log("Error In Finding an Idea: " + err);
         res.status(404).json({ errMsg: "Ideas Not found" });
     }
 }
