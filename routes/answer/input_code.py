@@ -1,1 +1,1 @@
-def solution(a): return(2)
+def solution(a,b): return(a+b)

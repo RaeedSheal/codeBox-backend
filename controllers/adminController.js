@@ -42,6 +42,7 @@ export async function Login(req, res) {
         const admin = await Admin.findOne({
             username: req.body.username,
         }).select("+password");
+        if (!admin) return;
 
         if (await compare(req.body.password, admin.password)) {
             const token = sign(

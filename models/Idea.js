@@ -10,6 +10,7 @@ const ideaSchema = new Schema(
         inputB: { type: String, required: true },
         outputA: { type: String, required: true },
         outputB: { type: String, required: true },
+        hint: { type: String },
     },
     { timestamps: true }
 );

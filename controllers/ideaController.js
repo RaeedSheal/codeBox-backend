@@ -9,6 +9,7 @@ export async function CreateIdea(req, res) {
             inputB: req.body.inputB,
             outputA: req.body.outputA,
             outputB: req.body.outputB,
+            hint: req.body.hint,
         });
         res.json(idea);
     } catch (err) {
@@ -31,7 +32,16 @@ export async function getIdeas(req, res) {
         const ideas = await Idea.find();
         res.json({ ideas });
     } catch (err) {
-        console.log("Error In Finding Random Idea: " + err);
+        console.log("Error In Finding Ideas: " + err);
+        res.status(404).json({ errMsg: "Ideas Not found" });
+    }
+}
+export async function getIdeaById(req, res) {
+    try {
+        const idea = await Idea.findById(req.params.id);
+        res.json({ idea });
+    } catch (err) {
+        console.log("Error In Finding an Idea: " + err);
         res.status(404).json({ errMsg: "Ideas Not found" });
     }
 }
@@ -53,6 +63,8 @@ export async function editIdea(req, res) {
         let inputB = req.body.inputB;
         let outputA = req.body.outputA;
         let outputB = req.body.outputB;
+        let hint = req.body.hint;
+
         const editedIdea = await Idea.findByIdAndUpdate(
             req.params.id,
             {
@@ -62,6 +74,7 @@ export async function editIdea(req, res) {
                 inputB,
                 outputA,
                 outputB,
+                hint,
             },
             { new: true }
         );
