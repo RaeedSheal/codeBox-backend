@@ -9,6 +9,7 @@ export async function CreateIdea(req, res) {
             inputB: req.body.inputB,
             outputA: req.body.outputA,
             outputB: req.body.outputB,
+            hint: req.body.hint,
         });
         res.json(idea);
     } catch (err) {
@@ -62,6 +63,8 @@ export async function editIdea(req, res) {
         let inputB = req.body.inputB;
         let outputA = req.body.outputA;
         let outputB = req.body.outputB;
+        let hint = req.body.hint;
+
         const editedIdea = await Idea.findByIdAndUpdate(
             req.params.id,
             {
@@ -71,6 +74,7 @@ export async function editIdea(req, res) {
                 inputB,
                 outputA,
                 outputB,
+                hint,
             },
             { new: true }
         );
